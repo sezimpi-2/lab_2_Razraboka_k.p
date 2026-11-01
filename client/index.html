@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Университетская информационная система</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+    <h1>Университетская информационная система</h1>
+    <h2>Каталог учебных курсов</h2>
+</header>
+
+<main class="container">
+    <section class="card">
+        <h3>Добавить новый курс</h3>
+
+        <form id="courseForm">
+            <div class="form-group">
+                <label for="courseCode">Код курса:</label>
+                <input
+                    type="text"
+                    id="courseCode"
+                    placeholder="Например, CS101"
+                    pattern="[A-Za-zА-Яа-яЁё]{2,3}[0-9]{3}"
+                    title="Введите 2–3 буквы и 3 цифры, например CS101"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="courseTitle">Название дисциплины:</label>
+                <input
+                    type="text"
+                    id="courseTitle"
+                    placeholder="Например, Веб-разработка"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="courseCategory">Категория курса:</label>
+                <select id="courseCategory" required>
+                    <option value="">Выберите категорию</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Общие дисциплины">Общие дисциплины</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="courseCredits">Кредиты ECTS:</label>
+                <input
+                    type="number"
+                    id="courseCredits"
+                    min="1"
+                    max="15"
+                    value="5"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="courseDescription">Описание курса (необязательно):</label>
+                <textarea
+                    id="courseDescription"
+                    rows="3"
+                    placeholder="Краткое описание дисциплины"
+                ></textarea>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="btn btn-primary">
+                Сохранить курс
+            </button>
+        </form>
+
+        <div id="formAlert" class="alert hidden" role="status"></div>
+    </section>
+
+    <section class="card">
+        <div class="section-header">
+            <h3>Реестр курсов</h3>
+            <button type="button" id="btnRefresh" class="btn btn-secondary">
+                Обновить
+            </button>
+        </div>
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Поиск по названию, коду или категории..."
+            aria-label="Поиск курсов"
+        >
+
+        <div id="loadingSpinner" class="spinner hidden">
+            Загрузка данных...
+        </div>
+
+        <div class="table-wrapper">
+            <table class="data-table" id="coursesTable">
+                <thead>
+                    <tr>
+                        <th>Код</th>
+                        <th>Название дисциплины</th>
+                        <th>Категория</th>
+                        <th>Кредиты</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="coursesTbody"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
